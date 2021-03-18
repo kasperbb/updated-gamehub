@@ -1,0 +1,351 @@
+:root {
+	--primary: #1b203d;
+	--secondary: #2699fb;
+	--warn: #fa4b3d;
+	--success: #34b138;
+	--light-gray: #e0e0e0;
+	--lighter-gray: #eeeeee;
+	--dark-gray: #707070;
+	--darker-gray: #262626;
+	--white: #ffffff;
+	--black: #000000;
+	--border-radius: 4px;
+}
+
+html {
+	font-family: 'Roboto', 'Courier New', Courier, monospace;
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #f9f9f9;
+}
+
+/* Form
+-------------------------------*/
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.submit button {
+	background-color: var(--secondary);
+	border: 2px solid var(--secondary);
+	margin: 1rem 0 1rem 0;
+	border-radius: 4px;
+	color: white;
+	padding: 1rem 2rem;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 800;
+	font-size: 1rem;
+	width: 100%;
+}
+
+.submit button:hover {
+	cursor: pointer;
+	background-color: transparent;
+	color: var(--secondary);
+}
+
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=number],
+input[type=file],
+textarea,
+select {
+	display: flex;
+	flex-direction: column;
+	padding: 1rem;
+	color: #000000;
+	border: 2px solid var(--light-gray);
+	border-radius: 4px;
+	width: 100%;
+	margin: .25rem 0;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box; /* Firefox, other Gecko */
+	box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+input[type=file] {
+	height: 128px;
+	background: var(--white);
+}
+
+fieldset {
+	border: 0;
+	width: 100%;
+}
+
+/* Main
+-------------------------------*/
+
+main {
+	padding-top: 8rem;
+	margin: 0 15%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	align-items: flex-start;
+}
+
+/* Cart Contents
+-------------------------------*/
+.cart-contents {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Cart Section
+-------------------------------*/
+section.cart {
+	width: 100%;
+}
+
+section.cart .header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	border-bottom: 1px solid var(--light-gray);
+}
+
+/* Summary Section
+-------------------------------*/
+section.summary {
+	background: var(--white);
+	border-radius: 4px;
+	padding: 1.5rem;
+	flex: 1;
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.05);
+	position: sticky;
+	top: 10rem;
+	width: 100%;
+}
+
+section.summary h2 {
+	margin: 0;
+	border-bottom: 1px solid var(--light-gray);
+	padding-bottom: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+section.summary .orders {
+	font-size: .875rem;
+	margin-bottom: 1.5rem;
+	color: #677788;
+}
+
+section.summary .orders .order-item {
+	display: flex;
+	justify-content: space-between;
+}
+
+section.summary .orders .order-item span:nth-child(2) {
+	font-weight: 600;
+	color: #1e2022;
+}
+
+/* Game Details Form
+-------------------------------*/
+#gameDetailsForm {
+	display: grid;
+	grid-template: "a" "b" "c" "d" "e";
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+#gameDetailsForm .gameTitle {
+	grid-area: a;
+}
+
+#gameDetailsForm .sellPrice {
+	grid-area: b;
+	position: relative;
+}
+
+#gameDetailsForm .gameDesc {
+	grid-area: c;
+}
+
+#gameDetailsForm .gameImg {
+	grid-area: d;
+}
+
+#gameDetailsForm .gameKey {
+	grid-area: e;
+}
+
+#gameDetailsForm .sellPrice label::before {
+	content: "$";
+	position: absolute;
+	top: 40px;
+	left: 15px;
+	font-weight: 600;
+}
+
+#gameDetailsForm .sellPrice input {
+	padding-left: 40px;
+}
+
+#gameDetailsForm label > span {
+	color: #677788;
+	font-size: .875rem;
+}
+
+/* Billing Form
+-------------------------------*/
+.header.billing-address {
+	margin-top: 3rem;
+}
+
+#billingForm {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+/* Summary Form
+-------------------------------*/
+#summaryForm {
+	align-items: flex-start;
+}
+
+#summaryForm div:not(.options) {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	margin: .5rem 0;
+	color: #677788;
+}
+
+#summaryForm div:not(.options) span:nth-child(2) {
+	font-weight: 600;
+	color: #1e2022;
+}
+
+#summaryForm .options {
+	margin-bottom: 1rem;
+	font-weight: 600;
+}
+
+#summaryForm .options .optionItem {
+	display: block;
+}
+
+#summaryForm .options .optionItem:not(:last-child) {
+	margin-bottom: 1rem;
+}
+
+#summaryForm .options .optionItem span {
+	display: block;
+	font-weight: 400;
+	color: #8c98a4;
+	font-size: .875rem;
+	padding: .3rem 0 0 1.6rem;
+}
+
+#summaryForm .estimated-tax {
+	border-top: 1px solid var(--light-gray);
+	padding-top: 1.5rem;
+}
+
+/* Payment Method Form
+-------------------------------*/
+.header.payment-method {
+	margin-top: 3rem;
+}
+
+#paymentMethodForm {
+	display: grid;
+	grid-template: "a" "b" "c" "d";
+	gap: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+#paymentMethodForm .cardNumber {
+	grid-area: a;
+}
+
+#paymentMethodForm .cardHolder {
+	grid-area: b;
+}
+
+#paymentMethodForm .expiration {
+	grid-area: c;
+}
+
+#paymentMethodForm .cvc {
+	grid-area: d;
+}
+
+/* Actions
+-------------------------------*/
+.actions {
+	margin-top: 3rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.actions a.return-to-cart {
+	text-decoration: none;
+	color: var(--secondary);
+}
+
+.actions .checkout-button {
+	padding: .5rem 1rem;
+	font-size: 1rem;
+}
+
+.actions .checkout-button:disabled {
+	background: var(--light-gray);
+	border: 2px solid var(--light-gray);
+	color: var(--dark-gray);
+	cursor: not-allowed;
+}
+
+.error {
+	display: none;
+	font-size: 0.775rem;
+	margin: 0 0 0 0.5rem;
+	color: var(--warn);
+	position: absolute;
+}
+
+/* Media Queries
+-------------------------------*/
+@media only screen and (min-width: 1024px) {
+	main {
+		flex-direction: row;
+	}
+
+	section.cart {
+		width: 70%;
+	}
+
+	#gameDetailsForm {
+		grid-template: "a b" "c d" "e e";
+	}
+
+	#billingForm {
+		grid-template-columns: 1fr 1fr;
+	}
+
+	#paymentMethodForm {
+		grid-template: "a a a a" "b b c d";
+	}
+}

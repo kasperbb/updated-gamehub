@@ -1,0 +1,185 @@
+:root {
+	--primary: #1b203d;
+	--secondary: #2699fb;
+	--warn: #fa4b3d;
+	--success: #34b138;
+	--light-gray: #e0e0e0;
+	--lighter-gray: #eeeeee;
+	--dark-gray: #707070;
+	--darker-gray: #262626;
+	--white: #ffffff;
+	--black: #000000;
+	--border-radius: 4px;
+}
+
+html {
+	font-family: 'Roboto', 'Courier New', Courier, monospace;
+	box-sizing: border-box;
+	scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #f9f9f9;
+}
+
+/* Main Margin
+-------------------------------*/
+section:not(.hero) {
+	margin: 35% 10%;
+}
+
+/* Hero
+-------------------------------*/
+main section.hero {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+		url('../images/universe.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	padding: 5rem;
+	height: 600px;
+}
+
+main section.hero h1 {
+	margin: 0;
+	margin-bottom: 2rem;
+	color: var(--white);
+	text-transform: uppercase;
+	font-size: 2rem;
+}
+
+/* Call to Action
+-------------------------------*/
+section.hero .call-to-action {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+section.hero .call-to-action .actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	color: var(--white);
+	font-size: 28px;
+	font-weight: 600;
+}
+
+section.hero .call-to-action .actions span {
+	margin: 1rem;
+}
+
+/* Categories
+-------------------------------*/
+section.categories .categories__header {
+	color: var(--primary);
+}
+
+section.categories .categories__grid {
+	display: grid;
+	gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	justify-items: center;
+	padding: 0 0 1rem 0;
+}
+
+/* Category Card
+-------------------------------*/
+.category-card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: black;
+	border: 1px solid #e0e0e0;
+	width: 100%;
+	height: 8rem;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	text-decoration: none;
+}
+
+.category-card.new-games {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/categories/new-games.jpg');
+}
+
+.category-card.used-games {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/categories/used-games.jpg');
+}
+
+.category-card.new-releases {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/categories/new-releases.jpg');
+}
+
+.category-card.gaming-accessories {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+		url('../images/categories/gaming-accessories.jpg');
+}
+
+.category-card h3 {
+	text-decoration: none;
+	color: var(--white);
+}
+
+.category-card i {
+	padding-left: 1rem;
+	color: var(--white);
+	-webkit-transition: transform 0.3s ease-out;
+	-moz-transition: transform 0.3s ease-out;
+	-ms-transition: transform 0.3s ease-out;
+	-o-transition: transform 0.3s ease-out;
+	transition: transform 0.3s ease-out;
+}
+
+.category-card:hover i {
+	-webkit-transform: translateX(8px);
+	-moz-transform: translateX(8px);
+	-ms-transform: translateX(8px);
+	-o-transform: translateX(8px);
+	transform: translateX(8px);
+}
+
+/* Grid
+-------------------------------*/
+.grid-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	color: var(--primary);
+}
+
+.grid-body {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+/* Media Queries
+-------------------------------*/
+@media only screen and (min-width: 1024px) {
+	/* Main Margin
+	-----------------------*/
+	section:not(.hero) {
+		margin: 5% 10%;
+	}
+
+	/* Call to Action
+	-----------------------*/
+	section.hero .call-to-action .actions {
+		flex-direction: row;
+	}
+}

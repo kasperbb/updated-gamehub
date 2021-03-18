@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Kasper Bø Bjørnø">
+    <meta name="description"
+        content="Change account details. View your orders. Add a balance to your account. Sell your used games.">
+
+    <title>Cart - GameHub</title>
+
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap"
+        rel="stylesheet">
+
+
+    <!-- Style Components-->
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <link rel="stylesheet" href="styles/product-card.css">
+    <link rel="stylesheet" href="styles/global.css">
+
+    <!-- File specific styles -->
+    <link rel="stylesheet" href="styles/new-cart.css">
+
+    <!-- Hotjar Tracking Code for https://bjorno-gamehub.netlify.app -->
+    <script>
+        (function (h, o, t, j, a, r) {
+            h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+            h._hjSettings = { hjid: 2261909, hjsv: 6 };
+            a = o.getElementsByTagName('head')[0];
+            r = o.createElement('script'); r.async = 1;
+            r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html" aria-label="Go to frontpage">
+                <img src="https://raw.githubusercontent.com/NoroffFEU/first-year-cross-course-assignment-brief-three/master/GameHub_Logo.png"
+                    alt="Logo for Gamehub">
+            </a>
+        </div>
+        <nav id="nav" role="navigation">
+            <div class="dropdown-button">
+                <button class="btn-clear" aria-label="Open store dropdown">
+                    Store
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="dropdown hidden">
+                <div class="dropdown__section">
+                    <h3 class="dropdown__header">Games</h3>
+                    <div class="dropdown__divider"></div>
+                    <div class="dropdown__body">
+                        <a href="#0" class="dropdown__item">Action</a>
+                        <a href="#0" class="dropdown__item">Adventure</a>
+                        <a href="#0" class="dropdown__item">Indie</a>
+                        <a href="#0" class="dropdown__item">RPG</a>
+                        <a href="#0" class="dropdown__item">More...</a>
+                    </div>
+                </div>
+                <div class="dropdown__section">
+                    <h3 class="dropdown__header">Game Platforms</h3>
+                    <div class="dropdown__divider"></div>
+                    <div class="dropdown__body">
+                        <a href="#0" class="dropdown__item">PC</a>
+                        <a href="#0" class="dropdown__item">Xbox</a>
+                        <a href="#0" class="dropdown__item">Playstation</a>
+                        <a href="#0" class="dropdown__item">Nintendo Switch</a>
+                        <a href="#0" class="dropdown__item">More...</a>
+                    </div>
+                </div>
+                <div class="dropdown__section">
+                    <h3 class="dropdown__header">Gaming Accessories</h3>
+                    <div class="dropdown__divider"></div>
+                    <div class="dropdown__body">
+                        <a href="#0" class="dropdown__item">Keyboards</a>
+                        <a href="#0" class="dropdown__item">Mice</a>
+                        <a href="#0" class="dropdown__item">Controllers</a>
+                        <a href="#0" class="dropdown__item">Headset</a>
+                        <a href="#0" class="dropdown__item">More...</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="search">
+                <form>
+                    <input type="text" name="search" id="search" aria-label="Search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="actions modal-buttons">
+                <a href="#" class="modal-button--shopping-cart" aria-label="Open shopping-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+                <a href="#" class="modal-button--favorite" aria-label="Open favorites">
+                    <i class="fas fa-heart"></i>
+                </a>
+            </div>
+
+            <div class="sign-up">
+                <a href="sign-in.html" aria-label="Go to sign-in">
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
+            </div>
+        </nav>
+
+        <div class="hamburger" id="hamburger" aria-label="Open navigation menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
+        </div>
+    </header>
+
+    <div id="dropdown-overlay"></div>
+
+    <main>
+        <section class="cart">
+            <div class="header">
+                <h2>My Cart</h2>
+                <span><span class="product-count">5</span> Items</span>
+            </div>
+            <div class="cart-contents"></div>
+        </section>
+
+        <section class="summary">
+            <h2>Cart Summary</h2>
+            <form id="summaryForm">
+                <div class="sub-total">
+                    <span>Item subtotal (<span class="product-count">5</span>)</span>
+                    <span id="subtotal">$300</span>
+                </div>
+                <div class="delivery">
+                    <span>Delivery</span>
+                    <span>Free</span>
+                </div>
+                <div class="options">
+                    <div class="optionItem">
+                        <input type="radio" id="standard" name="delivery" value="0" checked>
+                        <label for="standard">Free - Standard delivery</label>
+                        <span>Shipment may take 5-6 business days.</span>
+                    </div>
+                    <div class="optionItem">
+                        <input type="radio" id="express" name="delivery" value="8">
+                        <label for="express">$8 - Express delivery</label>
+                        <span>Shipment may take 2-3 business days.</span>
+                    </div>
+                </div>
+                <div class="estimated-tax">
+                    <span>Estimated tax</span>
+                    <span>--</span>
+                </div>
+                <div class="total">
+                    <span>Total</span>
+                    <span id="total">$300</span>
+                </div>
+                <a href="new-checkout.html" class="btn-blue btn-blue-hover checkout-button">Checkout</a>
+            </form>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <ul class="footer__social">
+                <li>
+                    <a href="#0" class="facebook"><i class="fab fa-facebook"></i></a>
+                </li>
+                <li>
+                    <a href="#0" class="twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li>
+                    <a href="#0" class="youtube"><i class="fab fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="footer__container flex">
+            <div class="footer__information">
+                <ul class="footer__information--gamehub">
+                    <li>GameHub</li>
+                    <li><a href="#0">News</a></li>
+                    <li><a href="#0">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <ul class="footer__information--support">
+                    <li>Support</li>
+                    <li><a href="#0">FAQ</a></li>
+                    <li><a href="#0">Returns & Refunds</a></li>
+                    <li><a href="#0">Support Hub</a></li>
+                </ul>
+                <ul class="footer__information--shortcuts">
+                    <li>Shortcuts</li>
+                    <li><a href="account.html">My account</a></li>
+                    <li><a href="redeem-code.html">Redeem code</a></li>
+                    <li><a href="sell-game.html">Sell game</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer__container">
+            <div class="footer__legal">
+                <a href="#0">Legal</a>
+                <a href="#0">Privacy Policy</a>
+                <a href="#0">Terms & Service</a>
+            </div>
+            <div class="footer__copyright">
+                &copy; Kasper Bø Bjørnø. All rights reserved. All trademarks and registered trademarks are the property
+                of
+                their respective owners.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/2540fdf7f0.js" crossorigin="anonymous"></script>
+
+    <!-- Javascript Components -->
+    <script src="js/dropdown.js"></script>
+    <script src="js/header.js"></script>
+    <script src="js/components/ProductCard.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+
+</html>
