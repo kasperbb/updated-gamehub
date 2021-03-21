@@ -43,7 +43,7 @@ const createProductCardWithRemoveButton = (product) => `
                 ${product.price}
             </div>
             <div class="product-card__actions">
-                <button class="shopping-cart-button modal-button--shopping-cart remove-button">
+                <button class="shopping-cart-button modal-button--shopping-cart remove-button" aria-label="Remove from cart">
                     <i class="fas fa-times"></i>
                 </button>
             </div>

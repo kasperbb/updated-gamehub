@@ -12,6 +12,18 @@ const populateAmount = () => {
     });
 }
 
+const populateDelivery = () => {
+    const deliveryContainer = document.querySelector("#delivery");
+    const summaryForm = document.querySelector("#summaryForm");
+    summaryForm.addEventListener("input", () => {
+        if (+summaryForm["delivery"].value === 0) {
+            deliveryContainer.innerHTML = 'Free';
+        } else {
+            deliveryContainer.innerHTML = '$' + +summaryForm["delivery"].value;
+        }
+    });
+}
+
 const calculatePrice = () => {
     const subtotalContainer = document.querySelector("#subtotal");
     const totalContainer = document.querySelector("#total");
@@ -49,6 +61,7 @@ const addRemoveEvents = () => {
 }
 
 populateCartContent();
+populateDelivery()
 populateAmount();
 calculatePrice();
 addRemoveEvents();

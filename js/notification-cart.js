@@ -29,14 +29,7 @@ const productsArr = [
         name: "FIFA 21 Standard Edition",
         price: "$60"
     },
-];
-
-const populateProductCards = (products) => {
-    const containerElements = document.querySelectorAll(".addProductCards");
-    containerElements.forEach(el => {
-        el.innerHTML = createProductCardList(products);
-    })
-}
+]
 
 const animateIcon = () => {
     const notificationIcon = document.querySelector(".notification-icon");
@@ -102,7 +95,6 @@ const addEventsToButtons = () => {
     });
 }
 
-populateProductCards(productsArr);
 setNotificationIconAmount();
 addEventsToButtons();
 

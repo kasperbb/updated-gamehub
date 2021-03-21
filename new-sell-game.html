@@ -58,16 +58,16 @@
                     <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </button>
             </div>
-
+    
             <div class="dropdown hidden">
                 <div class="dropdown__section">
                     <h3 class="dropdown__header">Games</h3>
                     <div class="dropdown__divider"></div>
                     <div class="dropdown__body">
-                        <a href="#0" class="dropdown__item">Action</a>
-                        <a href="#0" class="dropdown__item">Adventure</a>
-                        <a href="#0" class="dropdown__item">Indie</a>
-                        <a href="#0" class="dropdown__item">RPG</a>
+                        <a href="product-grid.html" class="dropdown__item">Action</a>
+                        <a href="product-grid.html" class="dropdown__item">Adventure</a>
+                        <a href="product-grid.html" class="dropdown__item">Indie</a>
+                        <a href="product-grid.html" class="dropdown__item">RPG</a>
                         <a href="#0" class="dropdown__item">More...</a>
                     </div>
                 </div>
@@ -75,10 +75,10 @@
                     <h3 class="dropdown__header">Game Platforms</h3>
                     <div class="dropdown__divider"></div>
                     <div class="dropdown__body">
-                        <a href="#0" class="dropdown__item">PC</a>
-                        <a href="#0" class="dropdown__item">Xbox</a>
-                        <a href="#0" class="dropdown__item">Playstation</a>
-                        <a href="#0" class="dropdown__item">Nintendo Switch</a>
+                        <a href="product-grid.html" class="dropdown__item">PC</a>
+                        <a href="product-grid.html" class="dropdown__item">Xbox</a>
+                        <a href="product-grid.html" class="dropdown__item">Playstation</a>
+                        <a href="product-grid.html" class="dropdown__item">Nintendo Switch</a>
                         <a href="#0" class="dropdown__item">More...</a>
                     </div>
                 </div>
@@ -86,38 +86,39 @@
                     <h3 class="dropdown__header">Gaming Accessories</h3>
                     <div class="dropdown__divider"></div>
                     <div class="dropdown__body">
-                        <a href="#0" class="dropdown__item">Keyboards</a>
-                        <a href="#0" class="dropdown__item">Mice</a>
-                        <a href="#0" class="dropdown__item">Controllers</a>
-                        <a href="#0" class="dropdown__item">Headset</a>
+                        <a href="product-grid.html" class="dropdown__item">Keyboards</a>
+                        <a href="product-grid.html" class="dropdown__item">Mice</a>
+                        <a href="product-grid.html" class="dropdown__item">Controllers</a>
+                        <a href="product-grid.html" class="dropdown__item">Headset</a>
                         <a href="#0" class="dropdown__item">More...</a>
                     </div>
                 </div>
             </div>
-
+    
             <div class="search">
                 <form>
                     <input type="text" name="search" id="search" aria-label="Search">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
-
+    
             <div class="actions modal-buttons">
-                <a href="#" class="modal-button--shopping-cart" aria-label="Open shopping-cart">
+                <a href="new-cart.html" class="modal-button--shopping-cart" aria-label="Open shopping-cart">
                     <i class="fas fa-shopping-cart"></i>
+                    <span class="notification-icon" id="shoppingCartNotificationIcon">2</span>
                 </a>
                 <a href="#" class="modal-button--favorite" aria-label="Open favorites">
                     <i class="fas fa-heart"></i>
                 </a>
             </div>
-
+    
             <div class="sign-up">
                 <a href="sign-in.html" aria-label="Go to sign-in">
                     <i class="fas fa-sign-in-alt"></i>
                 </a>
             </div>
         </nav>
-
+    
         <div class="hamburger" id="hamburger" aria-label="Open navigation menu">
             <i class="fas fa-bars" aria-hidden="true"></i>
         </div>
@@ -312,6 +313,7 @@
     <!-- Javascript Components -->
     <script src="js/dropdown.js"></script>
     <script src="js/header.js"></script>
+    <script src="js/notification-cart.js"></script>
     <script src="js/new-sell-game.js"></script>
 </body>
 
