@@ -1,16 +1,16 @@
 // With favorites and shopping-cart buttons
 const createProductCard = (product) => `
     <div class="product-card" data-id="${product.id}">
-        <a href="product.html">
-            <img src="${product.image}" alt="Game cover for ${product.name}">
+        <a href="product.html?id=${product.id}">
+            <img src="${product.images[0].src}" alt="Game cover for ${product.name}">
         </a>
         <div class="product-card__title">
-            <a href="product.html">${product.name}</a>
+            <a href="product.html?id=${product.id}">${product.name}</a>
             <p>PS4</p>
         </div>
         <div class="product-card__body">
             <div class="product-card__price">
-                ${product.price}
+                ${product.prices.currency_prefix + parseInt(product.prices.price).toFixed(2)}
             </div>
             <div class="product-card__actions">
                 <button class="favorite-button modal-button--favorite">
@@ -31,16 +31,16 @@ const createProductCardList = (products) => {
 // With remove from cart button
 const createProductCardWithRemoveButton = (product) => `
     <div class="product-card" data-id="${product.id}" data-removeid="${product.removeId}">
-        <a href="product.html">
-            <img src="${product.image}" alt="Game cover for ${product.name}">
+        <a href="product.html?id=${product.id}">
+            <img src="${product.images[0].src}" alt="Game cover for ${product.name}">
         </a>
         <div class="product-card__title">
-            <a href="product.html">${product.name}</a>
+            <a href="product.html?id=${product.id}">${product.name}</a>
             <p>PS4</p>
         </div>
         <div class="product-card__body">
             <div class="product-card__price">
-                ${product.price}
+                ${product.prices.currency_prefix + parseInt(product.prices.price).toFixed(2)}
             </div>
             <div class="product-card__actions">
                 <button class="shopping-cart-button modal-button--shopping-cart remove-button" aria-label="Remove from cart">

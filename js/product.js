@@ -1,3 +1,75 @@
+const ALL_PRODUCTS_URL = 'https://gamehub-cms.bjorno.dev/wp-json/wc/store/products';
+const params = new URLSearchParams(window.location.search);
+const ID = params.get("id");
+
+const imageConatiner = document.querySelector(".product__image");
+const imagesContainer = document.querySelector(".product__images");
+const titleContainer = document.querySelector(".product__title");
+const priceContainer = document.querySelector(".product__price");
+const descriptionContainer = document.querySelector(".product__description");
+const buyNowButtonContainer = document.querySelector(".buy-now-button");
+
+const productInfoDescriptionContainer = document.querySelector(".product-information__description");
+const productInfoSystemReqContainer = document.querySelector(".product-information__system-requirements");
+
+const loader = document.querySelector(".loader-wrapper");
+
+let productsArr = [];
+
+const fetchProducts = async (url) => {
+	const res = await fetch(url);
+	const json = await res.json();
+	productsArr = json;
+	return json;
+}
+
+const fetchProduct = async () => {
+	const res = await fetch(`${ALL_PRODUCTS_URL}/${ID}`);
+	const json = await res.json();
+	return json;
+}
+
+const populateProduct = async () => {
+	const product = await fetchProduct();
+
+	for (let i = 1; i < product.images.length; i++) {
+		imagesContainer.innerHTML += `<img src="${product.images[i].src}" alt="In-game image of ${product.name}" />`;
+	}
+
+	imageConatiner.innerHTML = `<img src="${product.images[0].src}" alt="Game cover for ${product.name}" />`;
+	titleContainer.innerHTML = product.name;
+	priceContainer.innerHTML = product.prices.currency_symbol + product.prices.price;
+	descriptionContainer.innerHTML = product.description.substring(0, 200) + "...";
+	buyNowButtonContainer.href = `new-checkout.html?id=${ID}`;
+
+	productInfoDescriptionContainer.innerHTML = product.description;
+	productInfoSystemReqContainer.innerHTML = product.short_description;
+
+	loader.style.display = "none";
+}
+
+const populateProductCardsFirst = () => {
+	return new Promise((fulfill, reject) => {
+		const res = populateProductCards();
+		fulfill(res);
+		reject(error);
+	});
+}
+
+const populateProductCards = async () => {
+	const containerElements = document.querySelectorAll(".addProductCards");
+	const res = await fetchProducts(ALL_PRODUCTS_URL);
+	containerElements.forEach(el => {
+		el.innerHTML = createProductCardList(res);
+	})
+}
+
+populateProduct();
+
+populateProductCardsFirst().then(res => {
+	setUpCartSystem();
+});
+
 window.addEventListener('load', () => {
 	tabsFunc();
 });

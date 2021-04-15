@@ -1,3 +1,15 @@
+const ALL_PRODUCTS_URL = 'https://gamehub-cms.bjorno.dev/wp-json/wc/store/products';
+
+let PRODUCTS = [];
+
+const fetchProducts = async (url) => {
+    const res = await fetch(url);
+    const json = await res.json();
+    PRODUCTS = json;
+    console.log('Products:', json);
+    return json;
+}
+
 window.addEventListener('load', () => {
     gridList();
     moreOptions();
@@ -76,102 +88,14 @@ const priceRange = () => {
     };
 
     DOM.priceRange.oninput = () => {
-        DOM.priceOutput.innerHTML = '$' + DOM.priceRange.value;
+        DOM.priceOutput.innerHTML = `$0 - ${DOM.priceRange.value}`;
+        populateProductCards(filterProductsByPrice(PRODUCTS, parseInt(DOM.priceRange.value)));
     }
 };
 
-const productsArrAlt = [
-    {
-        id: 0,
-        image: "images/game-covers/destiny_2.jpg",
-        name: "Destiny 2",
-        price: "$60",
-    },
-    {
-        id: 1,
-        image: "images/game-covers/cyberpunk_2077.jpg",
-        name: "Cyberpunk 2077",
-        price: "$60"
-    },
-    {
-        id: 2,
-        image: "images/game-covers/call_of_duty_infinite_warfare.jpg",
-        name: "Call of Duty: Infinite Warfare",
-        price: "$60"
-    },
-    {
-        id: 3,
-        image: "images/game-covers/assassins_creed_odyssey.png",
-        name: "Assassin's Creed Odyssey",
-        price: "$60"
-    },
-    {
-        id: 4,
-        image: "images/game-covers/fifa_21_standard_edition.jpg",
-        name: "FIFA 21 Standard Edition",
-        price: "$60"
-    },
-    {
-        id: 5,
-        image: "images/game-covers/destiny_2.jpg",
-        name: "Destiny 2",
-        price: "$60",
-    },
-    {
-        id: 6,
-        image: "images/game-covers/cyberpunk_2077.jpg",
-        name: "Cyberpunk 2077",
-        price: "$60"
-    },
-    {
-        id: 7,
-        image: "images/game-covers/call_of_duty_infinite_warfare.jpg",
-        name: "Call of Duty: Infinite Warfare",
-        price: "$60"
-    },
-    {
-        id: 8,
-        image: "images/game-covers/assassins_creed_odyssey.png",
-        name: "Assassin's Creed Odyssey",
-        price: "$60"
-    },
-    {
-        id: 9,
-        image: "images/game-covers/fifa_21_standard_edition.jpg",
-        name: "FIFA 21 Standard Edition",
-        price: "$60"
-    },
-    {
-        id: 10,
-        image: "images/game-covers/destiny_2.jpg",
-        name: "Destiny 2",
-        price: "$60",
-    },
-    {
-        id: 11,
-        image: "images/game-covers/cyberpunk_2077.jpg",
-        name: "Cyberpunk 2077",
-        price: "$60"
-    },
-    {
-        id: 12,
-        image: "images/game-covers/call_of_duty_infinite_warfare.jpg",
-        name: "Call of Duty: Infinite Warfare",
-        price: "$60"
-    },
-    {
-        id: 13,
-        image: "images/game-covers/assassins_creed_odyssey.png",
-        name: "Assassin's Creed Odyssey",
-        price: "$60"
-    },
-    {
-        id: 14,
-        image: "images/game-covers/fifa_21_standard_edition.jpg",
-        name: "FIFA 21 Standard Edition",
-        price: "$60"
-    },
-];
+const filterProductsByPrice = (products, price) => {
+    return products.filter(product => parseInt(product.prices.price) <= price);
+}
 
 const populateProductCards = (products) => {
     const containerElements = document.querySelectorAll(".addProductCards");
@@ -180,4 +104,9 @@ const populateProductCards = (products) => {
     })
 }
 
-populateProductCards(productsArrAlt);
+const populateAndFetch = async () => {
+    const products = await fetchProducts(ALL_PRODUCTS_URL);
+    populateProductCards(products)
+}
+
+populateAndFetch();

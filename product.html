@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="styles/modal.css">
         <link rel="stylesheet" href="styles/product-card.css">
         <link rel="stylesheet" href="styles/global.css">
+        <link rel="stylesheet" href="styles/loader.css">
         
         <!-- File specific styles -->
         <link rel="stylesheet" href="styles/product.css">
@@ -121,6 +122,10 @@
                 <i class="fas fa-bars" aria-hidden="true"></i>
             </div>
         </header>
+
+        <div class="loader-wrapper">
+            <div id="loader"></div>
+        </div>
         
         <div id="dropdown-overlay"></div>
 
@@ -129,25 +134,19 @@
             <div class="product">
                 <h1 class="product__title">Call of Duty: Black Ops Cold War (PS4)</h1>
                 <div class="product__container">
-                    <div class="product__image">
-                        <img src="images/game-covers/product_image.jpg" alt="In-game image of Call of Duty">
-                    </div>
+                    <div class="product__image"></div>
                     <div class="product__info">
-                        <h2>$60</h2>
+                        <h2 class="product__price">$60</h2>
                         <button class="btn-blue btn-blue-hover">Add to cart</button>
-                        <a href="checkout.html" class="btn-red btn-red-hover">Buy now</a>
+                        <a href="new-checkout.html" class="btn-red btn-red-hover buy-now-button">Buy now</a>
                         <h3 class="from-seller">From seller: GameHub</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                        <p class="product__description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
                         magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
                         gubergren, no sea takimata sanctus est Lorem ipsum dolor sit...</p>
                         <a href="#product-information">Read more</a>
                     </div>
                 </div>
-                <div class="product__images">
-                    <img src="images/game-covers/destiny_2.jpg" alt="Game cover for Destiny 2">
-                    <img src="images/game-covers/destiny_2.jpg" alt="Game cover for Destiny 2">
-                    <img src="images/game-covers/destiny_2.jpg" alt="Game cover for Destiny 2">
-                </div>
+                <div class="product__images"></div>
             </div>
 
             <!--
@@ -160,147 +159,7 @@
                     <a class="btn-blue--sm" href="product-grid.html">Discover all</a>
                 </div>
 
-                <div class="grid-body">
-
-                    <div class="product-card">
-                        <a href="product.html">
-                            <img src="images/game-covers/destiny_2.jpg" alt="Game cover for Destiny 2">
-                        </a>
-                        <div class="product-card__title">
-                            <a href="product.html">Destiny 2</a>
-                            <p>PS4</p>
-                        </div>
-                        <div class="product-card__body">
-                            <div class="product-card__price">
-                                $60
-                            </div>
-                            <div class="product-card__actions">
-                                <button class="favorite-button modal-button--favorite">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="shopping-cart-button modal-button--shopping-cart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <a href="product.html">
-                            <img src="images/game-covers/cyberpunk_2077.jpg" alt="Game cover for Cyberpunk 2077">
-                        </a>
-                        <div class="product-card__title">
-                            <a href="product.html">Cyberpunk 2077</a>
-                            <p>PS4</p>
-                        </div>
-                        <div class="product-card__body">
-                            <div class="product-card__price">
-                                $60
-                            </div>
-                            <div class="product-card__actions">
-                                <button class="favorite-button modal-button--favorite">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="shopping-cart-button modal-button--shopping-cart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <a href="product.html">
-                            <img src="images/game-covers/call_of_duty_infinite_warfare.jpg" alt="Game cover for Call of Duty: Infinite Warfare">
-                        </a>
-                        <div class="product-card__title">
-                            <a href="product.html">Call of Duty: Infinite Warfare</a>
-                            <p>PS4</p>
-                        </div>
-                        <div class="product-card__body">
-                            <div class="product-card__price">
-                                $60
-                            </div>
-                            <div class="product-card__actions">
-                                <button class="favorite-button modal-button--favorite">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="shopping-cart-button modal-button--shopping-cart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <a href="product.html">
-                            <img src="images/game-covers/assassins_creed_odyssey.png" alt="Game cover for Assasin's Creed Odyssey">
-                        </a>
-                        <div class="product-card__title">
-                            <a href="product.html">Assasin's Creed Odyssey</a>
-                            <p>PS4</p>
-                        </div>
-                        <div class="product-card__body">
-                            <div class="product-card__price">
-                                $60
-                            </div>
-                            <div class="product-card__actions">
-                                <button class="favorite-button modal-button--favorite">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="shopping-cart-button modal-button--shopping-cart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <a href="product.html">
-                            <img src="images/game-covers/fifa_21_standard_edition.jpg" alt="Game cover for FIFA 21 Standard Edition">
-                        </a>
-                        <div class="product-card__title">
-                            <a href="product.html">FIFA 21 Standard Edition</a>
-                            <p>PS4</p>
-                        </div>
-                        <div class="product-card__body">
-                            <div class="product-card__price">
-                                $60
-                            </div>
-                            <div class="product-card__actions">
-                                <button class="favorite-button modal-button--favorite">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="shopping-cart-button modal-button--shopping-cart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card">
-                        <a href="product.html">
-                            <img src="images/game-covers/watch_dogs_legion.png" alt="Game cover for Watch Dogs Legion">
-                        </a>
-                        <div class="product-card__title">
-                            <a href="product.html">Watch Dogs Legion</a>
-                            <p>PS4</p>
-                        </div>
-                        <div class="product-card__body">
-                            <div class="product-card__price">
-                                $60
-                            </div>
-                            <div class="product-card__actions">
-                                <button class="favorite-button modal-button--favorite">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                                <button class="shopping-cart-button modal-button--shopping-cart">
-                                    <i class="fas fa-shopping-cart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
+                <div class="grid-body addProductCards"></div>
 
             </div>
             <!--
@@ -431,7 +290,8 @@
         <!-- Javascript Components -->
         <script src="js/dropdown.js"></script>
         <script src="js/header.js"></script>
-        <script src="js/notification-cart.js"></script>
+        <script src="js/cart-system.js"></script>
+        <script src="js/components/ProductCard.js"></script>
         <script src="js/product.js"></script>
     </body>
 

@@ -250,7 +250,12 @@ const countryList = [
     "Åland Islands"
 ];
 
+const ALL_PRODUCTS_URL = 'https://gamehub-cms.bjorno.dev/wp-json/wc/store/products';
+const params = new URLSearchParams(window.location.search);
+const ID = params.get("id");
+
 const products = JSON.parse(localStorage.getItem('products'));
+let product = null;
 
 const DOM = {
     billingForm: document.querySelector("#billingForm"),
@@ -258,7 +263,13 @@ const DOM = {
     button: document.querySelector("#placeOrder"),
     countrySelect: document.querySelector("#country"),
     summaryOrders: document.querySelector(".summary .orders"),
+    returnToCart: document.querySelector(".return-to-cart")
 }
+
+if (ID !== null) {
+    DOM.returnToCart.innerHTML = `<i class="fas fa-angle-left"></i> Return to product`;
+    DOM.returnToCart.href = `product.html?id=${ID}`;
+} 
 
 const required = (target) => {
     if (!target.classList.contains("touched")) return;
@@ -393,11 +404,22 @@ const calculatePrice = () => {
     const subtotalContainer = document.querySelector("#subtotal");
     const totalContainer = document.querySelector("#total");
     const summaryForm = document.querySelector("#summaryForm");
-    subtotalContainer.innerHTML = '$' + products.length * 60;
-    totalContainer.innerHTML = '$' + products.length * 60;
+
+    const currencySymbol = products[0]?.prices.currency_symbol || "£";
+
+    let totalPrice = products.reduce((prev, curr) => {
+        return parseInt(prev) + parseInt(curr.prices.price);
+    }, 0)
+
+    if (ID !== null) {
+        totalPrice = parseInt(product.prices.price);
+    }
+
+    subtotalContainer.innerHTML = currencySymbol + totalPrice;
+    totalContainer.innerHTML = currencySymbol + totalPrice;
     summaryForm.addEventListener("input", () => {
-        subtotalContainer.innerHTML = '$' + (products.length * 60 + +summaryForm["delivery"].value).toString();
-        totalContainer.innerHTML = '$' + (products.length * 60 + +summaryForm["delivery"].value).toString();
+        subtotalContainer.innerHTML = currencySymbol + (totalPrice + +summaryForm["delivery"].value).toString();
+        totalContainer.innerHTML = currencySymbol + (totalPrice + +summaryForm["delivery"].value).toString();
     });
 }
 
@@ -406,16 +428,57 @@ const populateSelectWithCountries = (countries) => {
 }
 
 const populateSummaryOrders = (orders) => {
-    orders.map(order => {
+    if (ID === null) {
+        let obj = {}
+        orders.forEach(order => {
+            if (obj.hasOwnProperty(order.name)) {
+                obj[order.name] = obj[order.name] + 1;
+            } else {
+                obj[order.name] = 1;
+            }
+        })
+        Object.keys(obj).map((key, val) => {
+            DOM.summaryOrders.innerHTML += `
+                <div class="order-item">
+                    <span>${key}</span>
+                    <span>x${obj[key]}</span>
+                </div>
+            `;
+        })
+    } else {
         DOM.summaryOrders.innerHTML += `
             <div class="order-item">
-                <span>${order.name}</span>
+                <span>${product.name}</span>
                 <span>x1</span>
             </div>
-        `;
+        `;      
+    }    
+}
+
+const fetchProduct = async () => {
+    const res = await fetch(`${ALL_PRODUCTS_URL}/${ID}`);
+    const json = await res.json();
+    product = json;
+    return json;
+}
+
+const fetchProductFirst = () => {
+    return new Promise((fulfill, reject) => {
+        const res = fetchProduct();
+        fulfill(res);
+        reject(error);
+    });
+}
+
+if (ID === null) {
+    populateSelectWithCountries(countryList);
+    populateSummaryOrders(products);
+    calculatePrice();
+} else {
+    fetchProductFirst().then(() => {
+        populateSelectWithCountries(countryList);
+        populateSummaryOrders(products);
+        calculatePrice();
     })
 }
 
-populateSelectWithCountries(countryList);
-populateSummaryOrders(products);
-calculatePrice();

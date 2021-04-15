@@ -28,11 +28,20 @@ const calculatePrice = () => {
     const subtotalContainer = document.querySelector("#subtotal");
     const totalContainer = document.querySelector("#total");
     const summaryForm = document.querySelector("#summaryForm");
-    subtotalContainer.innerHTML = '$' + products.length * 60;
-    totalContainer.innerHTML = '$' + products.length * 60;
+
+    const currencySymbol = products[0]?.prices.currency_symbol || "£";
+
+    const totalPrice = products.reduce((prev, curr) => {
+        return parseInt(prev) + parseInt(curr.prices.price);
+    }, 0)
+
+    console.log(`totalPrice`, totalPrice)
+
+    subtotalContainer.innerHTML = currencySymbol + totalPrice;
+    totalContainer.innerHTML = currencySymbol + totalPrice;
     summaryForm.addEventListener("input", () => {
-        subtotalContainer.innerHTML = '$' + (products.length * 60 + +summaryForm["delivery"].value).toString();
-        totalContainer.innerHTML = '$' + (products.length * 60 + +summaryForm["delivery"].value).toString();
+        subtotalContainer.innerHTML = currencySymbol + (totalPrice + +summaryForm["delivery"].value).toString();
+        totalContainer.innerHTML = currencySymbol + (totalPrice + +summaryForm["delivery"].value).toString();
     });
 }
 
@@ -40,6 +49,8 @@ const removeProductCardData = (removeId) => {
     const index = products.findIndex(el => el.removeId.toString() === removeId.toString());
     products.splice(index, 1);
     localStorage.setItem('products', JSON.stringify(products));
+    setCheckoutButtonDisabled();
+    setNotificationIconAmount();
 }
 
 const addRemoveEvents = () => {
@@ -60,6 +71,16 @@ const addRemoveEvents = () => {
     })
 }
 
+const setCheckoutButtonDisabled = () => {
+    const checkoutButton = document.querySelector(".checkout-button")
+    if (products.length > 0) {
+        checkoutButton.disabled = false;
+    } else {
+        checkoutButton.disabled = true
+    }
+}
+
+setCheckoutButtonDisabled();
 populateCartContent();
 populateDelivery()
 populateAmount();

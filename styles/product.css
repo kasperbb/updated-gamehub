@@ -134,6 +134,10 @@ main {
 	margin-bottom: 25px;
 }
 
+#product-information {
+	scroll-margin-top: 6rem;
+}
+
 /* Tabs
 -------------------------------*/
 .tabs__nav {
@@ -202,7 +206,7 @@ main {
 	/* Product
 	-----------------------*/
 	.product__image img {
-		width: 50rem;
+		/* width: 50rem; */
 	}
 
 	.product__info {

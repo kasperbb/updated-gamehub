@@ -195,6 +195,13 @@ section.summary h2 {
 	margin-top: 1rem;
 }
 
+#summaryForm .checkout-button:disabled {
+	border-color: #eeeeee;
+	color: #eeeeee;
+	background-color: transparent;
+	cursor: not-allowed;
+}
+
 /* Media Queries
 -------------------------------*/
 @media only screen and (min-width: 1024px) {
