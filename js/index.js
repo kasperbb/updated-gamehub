@@ -10,19 +10,9 @@ const fetchProducts = async (url) => {
     return json;
 }
 
-const populateProductCardsFirst = () => {
-    return new Promise((fulfill, reject) => {
-        const res = populateProductCards();
-        fulfill(res);
-        reject(error);
-    });
-}
-
 const populateProductCards = async () => {
     const containerElements = document.querySelectorAll(".addProductCards");
-
     const res = await fetchProducts(ALL_PRODUCTS_URL);
-
     containerElements.forEach(el => {
         el.innerHTML = createProductCardList(res);
     })
@@ -37,8 +27,8 @@ const populateProductCards = async () => {
 // }
 
 // populateProductCards(productsArr);
-populateProductCardsFirst().then(res => {
+populateProductCards().then(() => {
     setUpCartSystem();
-});
+})
 // populateProductCards();
 

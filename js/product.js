@@ -48,14 +48,6 @@ const populateProduct = async () => {
 	loader.style.display = "none";
 }
 
-const populateProductCardsFirst = () => {
-	return new Promise((fulfill, reject) => {
-		const res = populateProductCards();
-		fulfill(res);
-		reject(error);
-	});
-}
-
 const populateProductCards = async () => {
 	const containerElements = document.querySelectorAll(".addProductCards");
 	const res = await fetchProducts(ALL_PRODUCTS_URL);
@@ -66,7 +58,7 @@ const populateProductCards = async () => {
 
 populateProduct();
 
-populateProductCardsFirst().then(res => {
+populateProductCards().then(() => {
 	setUpCartSystem();
 });
 

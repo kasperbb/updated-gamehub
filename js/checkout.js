@@ -462,20 +462,12 @@ const fetchProduct = async () => {
     return json;
 }
 
-const fetchProductFirst = () => {
-    return new Promise((fulfill, reject) => {
-        const res = fetchProduct();
-        fulfill(res);
-        reject(error);
-    });
-}
-
 if (ID === null) {
     populateSelectWithCountries(countryList);
     populateSummaryOrders(products);
     calculatePrice();
 } else {
-    fetchProductFirst().then(() => {
+    fetchProduct().then(() => {
         populateSelectWithCountries(countryList);
         populateSummaryOrders(products);
         calculatePrice();
