@@ -6,7 +6,7 @@ const createProductCard = (product) => `
         </a>
         <div class="product-card__title">
             <a href="product.html?id=${product.id}">${product.name}</a>
-            <p>PS4</p>
+            <p>${product.categories.map(category => category.name).join(", ")}</p>
         </div>
         <div class="product-card__body">
             <div class="product-card__price">

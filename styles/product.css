@@ -55,6 +55,7 @@ main {
 
 .product__image img {
 	width: 100%;
+	max-width: 500px;
 }
 
 .product__info {

@@ -28,16 +28,16 @@ const onAddToCart = (e) => {
         productCard = e.target.parentElement.parentElement.parentElement;
     }
 
-    console.log(`productCard`, productCard)
+    if (e.target.classList.contains("btn-blue")) {
+        productCard = e.target;
+    }
 
     animateIcon();
 
     if (productCard !== null) {
         const productCardData = findProductCardById(productCard.dataset.id);
         const previousStorage = JSON.parse(localStorage.getItem('products'));
-        console.log(findProductCardById(productCard.dataset.id))
         productCardData["removeId"] = guidGenerator();
-        console.log(productCardData);
         if (previousStorage === null) {
             localStorage.setItem('products', JSON.stringify([productCardData]));
         } else {

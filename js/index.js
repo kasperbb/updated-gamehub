@@ -6,7 +6,6 @@ const fetchProducts = async (url) => {
     const res = await fetch(url);
     const json = await res.json();
     productsArr = json;
-    console.log('Products:', json);
     return json;
 }
 
@@ -14,7 +13,7 @@ const populateProductCards = async () => {
     const containerElements = document.querySelectorAll(".addProductCards");
     const res = await fetchProducts(ALL_PRODUCTS_URL);
     containerElements.forEach(el => {
-        el.innerHTML = createProductCardList(res);
+        el.innerHTML = createProductCardList(res.slice(0, 8));
     })
     
 }

@@ -98,7 +98,7 @@ main {
 .cart-contents {
 	display: grid;
 	gap: 2rem;
-	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	grid-template-columns: repeat(1, 1fr);
 }
 
 /* Cart Section
@@ -211,5 +211,9 @@ section.summary h2 {
 
 	section.cart {
 		width: 70%;
+	}
+
+	.cart-contents {
+		grid-template-columns: repeat(2, 1fr);
 	}
 }

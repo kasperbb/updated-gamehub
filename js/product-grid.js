@@ -1,9 +1,16 @@
 const ALL_PRODUCTS_URL = 'https://gamehub-cms.bjorno.dev/wp-json/wc/store/products';
+const params = new URLSearchParams(window.location.search);
+const category = params.get("category");
 
 let PRODUCTS = [];
 
 const fetchProducts = async (url) => {
-    const res = await fetch(url);
+    let res = null;
+    if (category) {
+        res = await fetch(`${url}?category=${category}`);
+    } else {
+        res = await fetch(url);
+    }
     const json = await res.json();
     PRODUCTS = json;
     console.log('Products:', json);
@@ -99,6 +106,20 @@ const filterProductsByPrice = (products, price) => {
 
 const populateProductCards = (products) => {
     const containerElements = document.querySelectorAll(".addProductCards");
+    const title = document.querySelector(".top-bar__title h1");
+    if (category) {
+        switch(category) {
+            case '19':
+                title.innerHTML = 'Playstation Games';
+                break;
+            case '20':
+                title.innerHTML = 'Gaming Accessories';
+                break;
+            case '22':
+                title.innerHTML = 'New Releases';
+                break;
+        }
+    }
     containerElements.forEach(el => {
         el.innerHTML = createProductCardList(products);
     })

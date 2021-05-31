@@ -35,8 +35,6 @@ const calculatePrice = () => {
         return parseInt(prev) + parseInt(curr.prices.price);
     }, 0)
 
-    console.log(`totalPrice`, totalPrice)
-
     subtotalContainer.innerHTML = currencySymbol + totalPrice;
     totalContainer.innerHTML = currencySymbol + totalPrice;
     summaryForm.addEventListener("input", () => {

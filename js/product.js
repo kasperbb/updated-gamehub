@@ -8,6 +8,7 @@ const titleContainer = document.querySelector(".product__title");
 const priceContainer = document.querySelector(".product__price");
 const descriptionContainer = document.querySelector(".product__description");
 const buyNowButtonContainer = document.querySelector(".buy-now-button");
+const addToCartButtonContainer = document.querySelector(".add-to-cart-button");
 
 const productInfoDescriptionContainer = document.querySelector(".product-information__description");
 const productInfoSystemReqContainer = document.querySelector(".product-information__system-requirements");
@@ -32,6 +33,8 @@ const fetchProduct = async () => {
 const populateProduct = async () => {
 	const product = await fetchProduct();
 
+	addToCartButtonContainer.dataset.id = ID;
+
 	for (let i = 1; i < product.images.length; i++) {
 		imagesContainer.innerHTML += `<img src="${product.images[i].src}" alt="In-game image of ${product.name}" />`;
 	}
@@ -41,6 +44,7 @@ const populateProduct = async () => {
 	priceContainer.innerHTML = product.prices.currency_symbol + product.prices.price;
 	descriptionContainer.innerHTML = product.description.substring(0, 200) + "...";
 	buyNowButtonContainer.href = `new-checkout.html?id=${ID}`;
+	document.title = `${product.name} - GameHub`;
 
 	productInfoDescriptionContainer.innerHTML = product.description;
 	productInfoSystemReqContainer.innerHTML = product.short_description;
@@ -52,7 +56,7 @@ const populateProductCards = async () => {
 	const containerElements = document.querySelectorAll(".addProductCards");
 	const res = await fetchProducts(ALL_PRODUCTS_URL);
 	containerElements.forEach(el => {
-		el.innerHTML = createProductCardList(res);
+		el.innerHTML = createProductCardList(res.slice(0, 4));
 	})
 }
 
